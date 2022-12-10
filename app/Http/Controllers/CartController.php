@@ -19,7 +19,6 @@ class CartController extends Controller
     }
 
     public function AddCart(Request $req,$id){
-        
         $product = DB::table('product')->where('id',$id)->first();
         if($product != null){
             if(Session('Cart') != null){

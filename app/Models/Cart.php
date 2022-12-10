@@ -13,8 +13,6 @@ class Cart{
         } 
     }
     
-        
-    
     public function AddCart($product , $id){
         $newProduct = ['quanty'=>0,'price'=>$product->price,'productInfo'=>$product];
         if($this->product){
