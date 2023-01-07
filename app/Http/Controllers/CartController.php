@@ -47,9 +47,10 @@ class CartController extends Controller
                         $newcart = new Cart($oldcart); //tao mot doi tuong gio hang moi tu lop Cart    
                         $newcart->AddCart($product,$id);
                         $req->session()->put('Cart',$newcart);
-                        //return view('item');
-                        $data = session('Cart')::all;
-                        dd($data);
+                        return view('item');
+                        //$data = session('Cart')::all;
+                        // dd($data);
+
                     }
                 }
             }

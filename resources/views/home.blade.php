@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Fashi Template">
     <meta name="keywords" content="Fashi, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,9 +25,10 @@
     <link rel="stylesheet" href="assets/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="assets/css/style.css" type="text/css">
     <style>
-        #change-item-cart table tbody tr td img{
+        #change-item-cart table tbody tr td img {
             width: 70px;
         }
+
     </style>
 </head>
 
@@ -97,65 +100,71 @@
                             <li class="cart-icon"><a href="#">
                                     <i class="icon_bag_alt"></i>
                                     @if(Session::has("Cart") != null)
-                                        <span id="total-quanty-show">{{Session::get('Cart')->totalQuanty}}</span>
-                                    
+                                    <span id="total-quanty-show">{{Session::get('Cart')->totalQuanty}}</span>
+
                                     @else
-                                        <span id="total-quanty-show">0</span>
+                                    <span id="total-quanty-show">0</span>
                                     @endif
-                                    
+
                                 </a>
                                 <div class="cart-hover">
-                                    <div id ="change-item-cart">
+                                    <div id="change-item-cart">
                                         @if(Session::has("Cart") != null)
                                         <div class="select-items">
                                             <table>
                                                 <tbody>
                                                     @foreach(Session::get('Cart')->product as $item)
                                                     <tr>
-                                                        <td class="si-pic"><img src="{{$item['productInfo']['image_url']}}" alt=""></td>
+                                                        <td class="si-pic"><img
+                                                                src="{{$item['productInfo']['image_url']}}" alt=""></td>
                                                         <td class="si-text">
                                                             <div class="product-selected">
-                                                                <p>{{number_format($item['productInfo']['price'])}}₫ x {{$item['quanty']}}</p>
+                                                                <p>{{number_format($item['productInfo']['price'])}}₫ x
+                                                                    {{$item['quanty']}}</p>
                                                                 <h6>{{$item['productInfo']['name']}}</h6>
                                                             </div>
                                                         </td>
                                                         <td class="si-close">
-                                                            <i class="ti-close" data-id="{{$item['productInfo']['id']}}"></i>
+                                                            <i class="ti-close"
+                                                                data-id="{{$item['productInfo']['id']}}"></i>
                                                         </td>
                                                     </tr>
                                                     @endforeach
                                                     {{-- @foreach(Session::get('Cart')->product as $item)
                                                     <tr>
-                                                        <td class="si-pic"><img src="assets/img/products/{{$item['productInfo']->img}}" alt=""></td>
-                                                        <td class="si-text">
-                                                            <div class="product-selected">
-                                                                <p>{{number_format($item['productInfo']->price)}}₫ x {{$item['quanty']}}</p>
-                                                                <h6>{{$item['productInfo']->name}}</h6>
-                                                            </div>
-                                                        </td>
-                                                        <td class="si-close">
-                                                            <i class="ti-close" data-id="{{$item['productInfo']->id}}"></i>
-                                                        </td>
+                                                        <td class="si-pic"><img src="assets/img/products/{{$item['productInfo']->img}}"
+                                                    alt=""></td>
+                                                    <td class="si-text">
+                                                        <div class="product-selected">
+                                                            <p>{{number_format($item['productInfo']->price)}}₫ x
+                                                                {{$item['quanty']}}</p>
+                                                            <h6>{{$item['productInfo']->name}}</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td class="si-close">
+                                                        <i class="ti-close" data-id="{{$item['productInfo']->id}}"></i>
+                                                    </td>
                                                     </tr>
                                                     @endforeach --}}
                                                     {{-- @foreach($product as $prd)
                                                         @if($prd['sub_products'] != null )
                                                             @foreach($prd['sub_products'] as $item)
-                                                                <td class="si-pic"><img src="{{$item['image_url']}}" alt=""></td>
-                                                                <td class="si-text">
-                                                                    <div class="product-selected">
-                                                                        <p>{{number_format($prd['cost'])}}₫</p>
-                                                                        <h6>{{$prd['name']}}</h6>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="si-close">
-                                                                    <i class="ti-close" data-id="{{$item['id']}}"></i>
-                                                                </td>
-                                                               
-                                                            @endforeach
-                                                    
-                                                        @endif
-                                                    @endforeach      --}}
+                                                                <td class="si-pic"><img src="{{$item['image_url']}}"
+                                                    alt=""></td>
+                                                    <td class="si-text">
+                                                        <div class="product-selected">
+                                                            <p>{{number_format($prd['cost'])}}₫</p>
+                                                            <h6>{{$prd['name']}}</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td class="si-close">
+                                                        <i class="ti-close" data-id="{{$item['id']}}"></i>
+                                                    </td>
+
+                                                    @endforeach
+
+                                                    @endif
+                                                    @endforeach --}}
                                                 </tbody>
                                             </table>
                                         </div>
@@ -165,7 +174,7 @@
                                         </div>
                                         @endif
                                     </div>
-                                    
+
                                     <div class="select-button">
                                         <a href="{{url('/Cart')}}" class="primary-btn view-card">VIEW CART</a>
                                         <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
@@ -238,69 +247,71 @@
                                 <div class="product-item">
                                     <div class="pi-pic">
                                         <img src="{{$item['image_url']}}" alt="">
-                                        <div class="sale pp-sale">Sale</div>
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a onclick="AddCart({{$prd->id}})" href="javascript:">+ Add Cart</a></li>
-                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
-                                        <a href="#">
-                                            <h5>{{$prd->name}}</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            {{number_format($prd->price)}}₫
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>  
-                            @endforeach  --}}
-                            @foreach($product as $prd)
-                                @if($prd['sub_products'] != null )
-                                    @foreach($prd['sub_products'] as $item)
-                                    <div class="col-lg-4 col-sm-6">
-                                        <div class="product-item">
-                                            
-                                            <div class="pi-pic">
-                                                <img src="{{$item['image_url']}}" alt="" >
-                                                <div class="sale pp-sale">Sale</div>
-                                                <div class="icon">
-                                                    <i class="icon_heart_alt"></i>
-                                                </div>
-                                                <ul>
-                                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                                    <li class="quick-view" ><a onclick="AddCart({{$item['id']}})" href="javascript:">+ Add Cart</a></li>
-                                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            
-                                            <div class="pi-text">
-                                                <div class="catagory-name">Towel</div>
-                                                <a href="#">
-                                                    <h5>{{$prd['name']}}</h5>
-                                                </a>
-                                                <div class="product-price">
-                                                    {{number_format($prd['cost'])}}₫
-                                                </div>
-                                            </div>
-                                           
-                                        </div>
-                                    </div>                           
-                                                               
-                                    
-                                    @endforeach          
-                                @endif
-                             @endforeach                          
+                            <div class="sale pp-sale">Sale</div>
+                            <div class="icon">
+                                <i class="icon_heart_alt"></i>
+                            </div>
+                            <ul>
+                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                <li class="quick-view"><a onclick="AddCart({{$prd->id}})" href="javascript:">+ Add
+                                        Cart</a></li>
+                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="pi-text">
+                            <div class="catagory-name">Towel</div>
+                            <a href="#">
+                                <h5>{{$prd->name}}</h5>
+                            </a>
+                            <div class="product-price">
+                                {{number_format($prd->price)}}₫
+                            </div>
                         </div>
                     </div>
+                </div>
+                @endforeach --}}
+                @foreach($product as $prd)
+                @if($prd['sub_products'] != null )
+                @foreach($prd['sub_products'] as $item)
+                <div class="col-lg-4 col-sm-6">
+                    <div class="product-item">
+
+                        <div class="pi-pic">
+                            <img src="{{$item['image_url']}}" alt="">
+                            <div class="sale pp-sale">Sale</div>
+                            <div class="icon">
+                                <i class="icon_heart_alt"></i>
+                            </div>
+                            <ul>
+                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                <li class="quick-view"><a onclick="AddCart({{$item['id']}})" href="javascript:">+ Add
+                                        Cart</a></li>
+                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                            </ul>
+                        </div>
+
+                        <div class="pi-text">
+                            <div class="catagory-name">Towel</div>
+                            <a href="#">
+                                <h5>{{$prd['name']}}</h5>
+                            </a>
+                            <div class="product-price">
+                                {{number_format($prd['cost'])}}₫
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+
+
+                @endforeach
+                @endif
+                @endforeach
             </div>
+        </div>
+        </div>
+        </div>
+        </div>
         </div>
     </section>
     <!-- Product Shop Section End -->
@@ -430,42 +441,63 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
     <!-- Default theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
     <!-- Semantic UI theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
     <!-- Bootstrap theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
 
     <script>
-        function AddCart(id){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        function AddCart(id) {
             $.ajax({
-                url:'AddCart/'+id,
-                type:'GET',
-            }).done(function(response){
-                RenderCart(response);
-                alertify.success('Add Cart Success');
+                url: 'AddCart/' + id,
+                type: 'GET',
+                success: function (response) {
+                    RenderCart(response);
+                    alertify.success('Add Cart Success');
+                    //window.location.href = "/";
+                },
+                error: function (response, error) {
+                    console.log(response);
+                    console.log(error);
+                    // RenderCart(response);
+                    // alertify.success('Add Cart Success');
+                    // window.location.href = "/";
+                }
             });
         }
-            //console.log(id);
-        $("#change-item-cart").on("click",".si-close i",function(){
+        //console.log(id);
+        $("#change-item-cart").on("click", ".si-close i", function () {
             //console.log($(this).data("id"));
             $.ajax({
-                url:'Delete-Item-Cart/'+$(this).data("id"),
-                type:'GET',
-            }).done(function(response){
-                RenderCart(response);
-                alertify.success('Delete Item Success');
+                url: 'Delete-Item-Cart/' + $(this).data("id"),
+                type: 'GET',
+                success: function (response) {
+                    RenderCart(response);
+                    alertify.success('Delete Item Success');
+                },
+                error: function (req, status, error) {
+                    var err = req.responseJSON.value;
+                    console.log(err);
+                }
             });
         });
-        
-        function RenderCart(response){
+
+        function RenderCart(response) {
             $("#change-item-cart").empty();
             $("#change-item-cart").html(response);
             $("#total-quanty-show").text($("#total-quanty-cart").val());
             console.log($("#total-quanty-cart").val());
         }
+
     </script>
 </body>
 
