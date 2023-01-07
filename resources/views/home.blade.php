@@ -484,9 +484,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     RenderCart(response);
                     alertify.success('Delete Item Success');
                 },
-                error: function (req, status, error) {
-                    var err = req.responseJSON.value;
-                    console.log(err);
+                error: function (response, error) {
+                    console.log(response);
+                    console.log(error);
                 }
             });
         });

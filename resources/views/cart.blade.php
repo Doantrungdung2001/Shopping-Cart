@@ -22,11 +22,12 @@
     <link rel="stylesheet" href="assets/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="assets/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="assets/css/style.css" type="text/css">
-    
+
     <style>
-        .cart-pic img{
+        .cart-pic img {
             width: 100px;
         }
+
     </style>
 </head>
 
@@ -57,7 +58,7 @@
     <section class="shopping-cart spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12" id ="list-cart">
+                <div class="col-lg-12" id="list-cart">
                     <div class="cart-table">
                         <table>
                             <thead>
@@ -70,14 +71,15 @@
                                     <th>Màu sắc</th>
                                     <th>Tổng</th>
                                     <th>Lưu</th>
-                                    <th>Xóa</th>                
+                                    <th>Xóa</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @if(Session::has("Cart") != null)
                                 @foreach(Session::get('Cart')->product as $item)
                                 <tr>
-                                    <td class="cart-pic first-row"><img src="{{$item['productInfo']['image_url']}}" alt=""></td>
+                                    <td class="cart-pic first-row"><img src="{{$item['productInfo']['image_url']}}"
+                                            alt=""></td>
                                     <td class="cart-title first-row">
                                         <h5>{{$item['productInfo']['name']}}</h5>
                                     </td>
@@ -85,7 +87,8 @@
                                     <td class="qua-col first-row">
                                         <div class="quantity">
                                             <div class="pro-qty">
-                                                <input id="quanty-item-{{$item['productInfo']['id']}}" type="text" value="{{$item['quanty']}}">
+                                                <input id="quanty-item-{{$item['productInfo']['id']}}" type="text"
+                                                    value="{{$item['quanty']}}">
                                             </div>
                                         </div>
                                     </td>
@@ -96,37 +99,43 @@
                                         <h5>{{$item['productInfo']['color']}}</h5>
                                     </td>
                                     <td class="total-price first-row">{{number_format($item['price'])}}₫</td>
-                                    <td class="close-td first-row"><i class="ti-save" onclick="SaveItemListCart({{$item['productInfo']['id']}});"></i></td>
-                                    <td class="close-td first-row"><i class="ti-close" onclick="DeleteItemListCart({{$item['productInfo']['id']}});"></i></td>
-                                    
+                                    <td class="close-td first-row"><i class="ti-save"
+                                            onclick="SaveItemListCart({{$item['productInfo']['id']}});"></i></td>
+                                    <td class="close-td first-row"><i class="ti-close"
+                                            onclick="DeleteItemListCart({{$item['productInfo']['id']}});"></i></td>
+
                                 </tr>
                                 @endforeach
                                 @endif
                                 {{-- @if(Session::has("Cart") != null)
                                 @foreach(Session::get('Cart')->product as $item)
                                 <tr>
-                                    <td class="cart-pic first-row"><img src="assets/img/products/{{$item['productInfo']->img}}" alt=""></td>
-                                    <td class="cart-title first-row">
-                                        <h5>{{$item['productInfo']->name}}</h5>
-                                    </td>
-                                    <td class="p-price first-row">{{number_format($item['productInfo']->price)}}₫</td>
-                                    <td class="qua-col first-row">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input id="quanty-item-{{$item['productInfo']->id}}" type="text" value="{{$item['quanty']}}">
-                                            </div>
+                                    <td class="cart-pic first-row"><img src="assets/img/products/{{$item['productInfo']->img}}"
+                                alt=""></td>
+                                <td class="cart-title first-row">
+                                    <h5>{{$item['productInfo']->name}}</h5>
+                                </td>
+                                <td class="p-price first-row">{{number_format($item['productInfo']->price)}}₫</td>
+                                <td class="qua-col first-row">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <input id="quanty-item-{{$item['productInfo']->id}}" type="text"
+                                                value="{{$item['quanty']}}">
                                         </div>
-                                    </td>
-                                    <td class="size-td first-row">
-                                        <h5>{{$item['productInfo']->size}}</h5>
-                                    </td>
-                                    <td class="color-td first-row">
-                                        <h5>{{$item['productInfo']->color}}</h5>
-                                    </td>
-                                    <td class="total-price first-row">{{number_format($item['price'])}}₫</td>
-                                    <td class="close-td first-row"><i class="ti-save" onclick="SaveItemListCart({{$item['productInfo']->id}});"></i></td>
-                                    <td class="close-td first-row"><i class="ti-close" onclick="DeleteItemListCart({{$item['productInfo']->id}});"></i></td>
-                                    
+                                    </div>
+                                </td>
+                                <td class="size-td first-row">
+                                    <h5>{{$item['productInfo']->size}}</h5>
+                                </td>
+                                <td class="color-td first-row">
+                                    <h5>{{$item['productInfo']->color}}</h5>
+                                </td>
+                                <td class="total-price first-row">{{number_format($item['price'])}}₫</td>
+                                <td class="close-td first-row"><i class="ti-save"
+                                        onclick="SaveItemListCart({{$item['productInfo']->id}});"></i></td>
+                                <td class="close-td first-row"><i class="ti-close"
+                                        onclick="DeleteItemListCart({{$item['productInfo']->id}});"></i></td>
+
                                 </tr>
                                 @endforeach
                                 @endif --}}
@@ -138,8 +147,10 @@
                             <div class="proceed-checkout">
                                 @if(Session::has("Cart") != null)
                                 <ul>
-                                    <li class="subtotal">Total Quanty : <span>{{Session::get('Cart')->totalQuanty}}</span></li>
-                                    <li class="cart-total">Total Price :<span>{{number_format(Session::get('Cart')->totalPrice)}}₫</span></li>
+                                    <li class="subtotal">Total Quanty :
+                                        <span>{{Session::get('Cart')->totalQuanty}}</span></li>
+                                    <li class="cart-total">Total Price
+                                        :<span>{{number_format(Session::get('Cart')->totalPrice)}}₫</span></li>
                                 </ul>
                                 <a href="#" class="proceed-btn">Thanh toán</a>
                                 @endif
@@ -150,7 +161,7 @@
             </div>
         </div>
     </section>
-    <!-- Shopping Cart Section End -->	
+    <!-- Shopping Cart Section End -->
 
     <!-- Footer Section Begin -->
     <footer class="footer-section">
@@ -182,54 +193,58 @@
     <script src="assets/js/owl.carousel.min.js"></script>
     <script src="assets/js/main.js"></script>
 
-     <!-- JavaScript -->
+    <!-- JavaScript -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
     <!-- Default theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
     <!-- Semantic UI theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
     <!-- Bootstrap theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
 
     <script>
-        function DeleteItemListCart(id){
+        function DeleteItemListCart(id) {
             //console.log(id);
             $.ajax({
-                url:'Delete-Item-List-Cart/'+id,
-                type:'GET',
-            }).done(function(response){
-            
+                url: 'Delete-Item-List-Cart/' + id,
+                type: 'GET',
+            }).done(function (response) {
+
                 RenderListCart(response);
                 alertify.success('Delete Item Success');
             });
         }
-        
-        function SaveItemListCart(id){
+
+        function SaveItemListCart(id) {
             //console.log(id);
-            
+
             $.ajax({
-                url:'Save-Item-List-Cart/'+id+'/'+$("#quanty-item-"+id).val(),
-                type:'GET',
-            }).done(function(response){
-                if($("#quanty-item-"+id).val() == 0){
-                    DeleteItemListCart(id);
-                }else{
-                    if($("#quanty-item-"+id).val() >= 100){
-                        alertify.success('Update Item fail');
-                    }else{
-                        RenderListCart(response);
-                        alertify.success('Update Item Success');
+                url: 'Save-Item-List-Cart/' + id + '/' + $("#quanty-item-" + id).val(),
+                type: 'GET',
+                success: function (response) {
+                    if ($("#quanty-item-" + id).val() == 0) {
+                        DeleteItemListCart(id);
+                    } else {
+                        if ($("#quanty-item-" + id).val() >= 100) {
+                            alertify.success('Update Item fail');
+                        } else {
+                            RenderListCart(response);
+                            alertify.success('Update Item Success');
+                        }
                     }
+                   
+                },
+                error: function (response, error) {
+                    console.log(response);
+                    console.log(error);
                 }
-                
             });
-           
         }
-        
-        function RenderListCart(response){
+
+        function RenderListCart(response) {
             $("#list-cart").empty();
             $("#list-cart").html(response);
             /*-------------------
@@ -254,6 +269,7 @@
                 $button.parent().find('input').val(newVal);
             });
         }
+
     </script>
 </body>
 
